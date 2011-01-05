@@ -40,4 +40,8 @@ func main() {
        return 0;  
      }
 
+ // expected output:
+ // [ 367.76, 368.12
+ //   674.06, 674.72 ]
+
 */

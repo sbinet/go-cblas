@@ -5,7 +5,7 @@ package cblas
 //#include <stdlib.h>
 //#include <string.h>
 import "C"
-import "unsafe"
+//import "unsafe"
 
 func Sgemv() {
 	
