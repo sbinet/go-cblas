@@ -1,9 +1,62 @@
 package main
 
-import _ "cblas"
+import "fmt"
+import "cblas"
 
 func main() {
-	
+	{
+		x := []float{1., 2., 3.}
+		fmt.Printf("x=%v\n", x)
+		sumx := cblas.Sasum(x)
+		fmt.Printf("sasum(x)=%v\n", sumx)
+	}
+
+	{
+		x := []float64{1., 2., 3.}
+		fmt.Printf("x=%v\n", x)
+		sumx := cblas.Dasum(x)
+		fmt.Printf("dasum(x)=%v\n", sumx)
+	}
+
+	{
+		x := []complex{ cmplx(1., 1.),
+			cmplx(2., 2.),
+			cmplx(3., 3.)}
+		fmt.Printf("x=%v\n", x)
+		sumx := cblas.Scasum(x)
+		fmt.Printf("scasum(x)=%v\n", sumx)
+	}
+
+	{
+		x := []complex128{ cmplx(1., 1.),
+			cmplx(2., 2.),
+			cmplx(3., 3.)}
+		fmt.Printf("x=%v\n", x)
+		sumx := cblas.Dzasum(x)
+		fmt.Printf("dzasum(x)=%v\n", sumx)
+	}
+
+	{
+		x := []float{ 0.733 }
+		y := []float{ 0.825 }
+		alpha := float(0.)
+
+		exp := float(0.604725)
+		val := cblas.Sdsdot(alpha, x,y)
+		fmt.Printf("sdsdot: exp: %v\n", exp)
+		fmt.Printf("sdsdot: val: %v\n", val)
+	}
+	{
+		x := []complex128{ cmplx(-0.87, -0.631) }
+		y := []complex128{ cmplx(-0.7,  -0.224) }
+
+		exp := complex128(cmplx(0.467656, 0.63658))
+		val := cblas.Zdotu(x,y)
+
+		fmt.Printf("zdotu: exp: %v\n", exp)
+		fmt.Printf("zdotu: val: %v\n", val)
+	}
+	return
 }
 
 /*
