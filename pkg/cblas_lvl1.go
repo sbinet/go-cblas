@@ -313,16 +313,16 @@ func Scasum(x []complex64) float32 {
 
 /*
  double  cblas_dznrm2(const int N, const void *X, const int incX);
- func Dznrm2(x []complex64) float64 {
-
- c_N := C.int(len(x))
-
- c_X    := (*C.double)(unsafe.Pointer(&x[0]))
- c_incX := C.int(1)
-
- return float64(C.cblas_dznrm2(c_N, c_X, c_incX))
- }
 */
+func Dznrm2(x []complex64) float64 {
+
+	c_N := C.int(len(x))
+
+	c_X := unsafe.Pointer(&x[0])
+	c_incX := C.int(1)
+
+	return float64(C.cblas_dznrm2(c_N, c_X, c_incX))
+}
 
 /*
  double  cblas_dzasum(const int N, const void *X, const int incX);
