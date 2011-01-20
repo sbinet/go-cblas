@@ -201,7 +201,7 @@ func Zdotu(x, y []complex128) complex128 {
  */
 func Zdotc(x,y []complex64) complex64 {
 
- if len(x) != len(y) {
+	if len(x) != len(y) {
 		panic("slices' size differ")
 	}
 
