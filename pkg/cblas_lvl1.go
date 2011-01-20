@@ -30,7 +30,7 @@ func Sdsdot(alpha float32, x, y []float32) float32 {
 	c_incX := C.int(1)
 
 	c_Y := (*C.float)(unsafe.Pointer(&y[0]))
-	c_incY := C.int(-1)
+	c_incY := C.int(1)
 
 	return float32(
 		C.cblas_sdsdot(c_N, c_alpha,
@@ -52,7 +52,7 @@ func Dsdot(x, y []float32) float64 {
 	c_incX := C.int(1)
 
 	c_Y := (*C.float)(unsafe.Pointer(&y[0]))
-	c_incY := C.int(-1)
+	c_incY := C.int(1)
 
 	return float64(
 		C.cblas_dsdot(c_N,
@@ -61,8 +61,7 @@ func Dsdot(x, y []float32) float64 {
 }
 
 /*
- float  cblas_sdot(const int N, const float  *X, const int incX,
- const float  *Y, const int incY);
+ float  cblas_sdot(const int N, const float  *X, const int incX, const float  *Y, const int incY);
  */
 func Sdot(x, y []float32) float32 {
 	if len(x) != len(y) {
@@ -75,7 +74,7 @@ func Sdot(x, y []float32) float32 {
 	c_incX := C.int(1)
 
 	c_Y := (*C.float)(unsafe.Pointer(&y[0]))
-	c_incY := C.int(-1)
+	c_incY := C.int(1)
 
 	return float32(
 		C.cblas_sdot(c_N,
@@ -85,8 +84,7 @@ func Sdot(x, y []float32) float32 {
 }
 
 /*
- double cblas_ddot(const int N, const double *X, const int incX,
- const double *Y, const int incY);
+ double cblas_ddot(const int N, const double *X, const int incX, const double *Y, const int incY);
  */
 func Ddot(x, y []float64) float64 {
 	if len(x) != len(y) {
@@ -99,7 +97,7 @@ func Ddot(x, y []float64) float64 {
 	c_incX := C.int(1)
 
 	c_Y := (*C.double)(unsafe.Pointer(&y[0]))
-	c_incY := C.int(-1)
+	c_incY := C.int(1)
 
 	return float64(
 		C.cblas_ddot(c_N,
@@ -108,8 +106,7 @@ func Ddot(x, y []float64) float64 {
 }
 
 /*
- void   cblas_cdotu_sub(const int N, const void *X, const int incX,
- const void *Y, const int incY, void *dotu);
+ void   cblas_cdotu_sub(const int N, const void *X, const int incX, const void *Y, const int incY, void *dotu);
  */
 func Cdotu(x, y []complex64) complex64 {
 
@@ -126,7 +123,7 @@ func Cdotu(x, y []complex64) complex64 {
 	c_incX := C.int(1)
 
 	c_Y := unsafe.Pointer(&y[0])
-	c_incY := C.int(-1)
+	c_incY := C.int(1)
 
 	C.cblas_cdotu_sub(c_N,
 		c_X, c_incX,
@@ -139,8 +136,7 @@ func Cdotu(x, y []complex64) complex64 {
 }
 
 /*
- void   cblas_cdotc_sub(const int N, const void *X, const int incX,
- const void *Y, const int incY, void *dotc);
+ void   cblas_cdotc_sub(const int N, const void *X, const int incX, const void *Y, const int incY, void *dotc);
  */
 func Cdotc(x, y []complex64) complex64 {
 
@@ -157,7 +153,7 @@ func Cdotc(x, y []complex64) complex64 {
 	c_incX := C.int(1)
 
 	c_Y := unsafe.Pointer(&y[0])
-	c_incY := C.int(-1)
+	c_incY := C.int(1)
 
 	C.cblas_cdotc_sub(c_N,
 		c_X, c_incX,
@@ -170,8 +166,7 @@ func Cdotc(x, y []complex64) complex64 {
 }
 
 /*
- void   cblas_zdotu_sub(const int N, const void *X, const int incX,
- const void *Y, const int incY, void *dotu);
+ void   cblas_zdotu_sub(const int N, const void *X, const int incX, const void *Y, const int incY, void *dotu);
  */
 func Zdotu(x, y []complex128) complex128 {
 
@@ -189,7 +184,7 @@ func Zdotu(x, y []complex128) complex128 {
 	c_incX := C.int(1)
 
 	c_Y := unsafe.Pointer(&y[0])
-	c_incY := C.int(-1)
+	c_incY := C.int(1)
 
 	C.cblas_zdotu_sub(c_N,
 		c_X, c_incX,
@@ -202,35 +197,34 @@ func Zdotu(x, y []complex128) complex128 {
 }
 
 /*
- void   cblas_zdotc_sub(const int N, const void *X, const int incX,
- const void *Y, const int incY, void *dotc);
- func Zdotc(x,y []complex64) complex64 {
+ void   cblas_zdotc_sub(const int N, const void *X, const int incX, const void *Y, const int incY, void *dotc);
+ */
+func Zdotc(x,y []complex64) complex64 {
 
  if len(x) != len(y) {
- panic("slices' size differ")
- }
+		panic("slices' size differ")
+	}
 
- var ret C.complexfloat
- c_ret := (*C.char)(unsafe.Pointer(ret))
+	var ret C.complexfloat
+	c_ret := unsafe.Pointer(&ret)
 
- c_N := C.int(len(x))
+	c_N := C.int(len(x))
 
- c_X    := (*C.complexfloat)(unsafe.Pointer(&x[0]))
- c_incX := C.int(1)
+	c_X    := unsafe.Pointer(&x[0])
+	c_incX := C.int(1)
 
- c_Y    := (*C.complexfloat)(unsafe.Pointer(&y[0]))
- c_incY := C.int(-1)
+	c_Y    := unsafe.Pointer(&y[0])
+	c_incY := C.int(1)
 
- C.cblas_cdotu_sub(c_N,
- c_X, c_incX,
- c_Y, c_incY,
- c_ret)
+	C.cblas_cdotu_sub(c_N,
+		c_X, c_incX,
+		c_Y, c_incY,
+		c_ret)
 
- return complex(
- float32(ret.real), 
- float32(ret.imag))
- }
- */
+	return complex(
+		float32(C.crealf(ret)), 
+		float32(C.cimagf(ret)))
+}
 
 /*
  float  cblas_snrm2(const int N, const float *X, const int incX);
