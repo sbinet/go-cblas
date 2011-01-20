@@ -13,12 +13,14 @@ import "C"
 type Index int
 
 type Order C.enum_CBLAS_ORDER
+
 const (
 	RowMajor = Order(101)
 	ColMajor = Order(102)
 )
 
 type Transpose C.enum_CBLAS_TRANSPOSE
+
 const (
 	NoTrans   = Transpose(111)
 	Trans     = Transpose(112)
@@ -26,21 +28,24 @@ const (
 )
 
 type UpLo C.enum_CBLAS_UPLO
+
 const (
 	Upper = UpLo(121)
 	Lower = UpLo(122)
 )
 
 type Diag C.enum_CBLAS_DIAG
+
 const (
 	NonUnit = Diag(131)
 	Unit    = Diag(132)
-	)
+)
 
 type Side C.enum_CBLAS_SIDE
+
 const (
-	Left = Side(141)
-	Right= Side(142)
+	Left  = Side(141)
+	Right = Side(142)
 )
 
 // EOF
