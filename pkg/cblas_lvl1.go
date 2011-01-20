@@ -287,16 +287,16 @@ func Dasum(x []float64) float64 {
 
 /*
  float  cblas_scnrm2(const int N, const void *X, const int incX);
- func Snrm2(x []complex) float {
-
- c_N := C.int(len(x))
-
- c_X    := (*C.float)(unsafe.Pointer(&x[0]))
- c_incX := C.int(1)
-
- return float(C.cblas_scnrm2(c_N, c_X, c_incX))
- }
 */
+func Scnrm2(x []complex64) float32 {
+
+	c_N := C.int(len(x))
+	
+	c_X    := unsafe.Pointer(&x[0])
+	c_incX := C.int(1)
+
+	return float32(C.cblas_scnrm2(c_N, c_X, c_incX))
+}
 
 /*
  float  cblas_scasum(const int N, const void *X, const int incX);
