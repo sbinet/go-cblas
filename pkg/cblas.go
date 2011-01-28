@@ -2,6 +2,7 @@
 package cblas
 
 /*
+ #cgo LDFLAGS: -lcblas
  #include "cblas.h"
 */
 import "C"
