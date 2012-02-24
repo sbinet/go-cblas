@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-import "cblas"
+import "bitbucket.org/binet/go-cblas/pkg/cblas"
 
 func main() {
 	{
